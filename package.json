@@ -1,0 +1,21 @@
+{
+	"name": "create-scriptable-app",
+	"version": "1.0.0",
+	"description": "A simple way to bootstrap and develop a remote updateable scriptable widget",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"scriptable",
+		"bootstrapper"
+	],
+	"author": "Sebastian Heinz",
+	"license": "MIT",
+	"files": [
+		"package.json",
+		"readme.md",
+		"license.md",
+		"./bin"
+	],
+	"bin": "./bin/index.js"
+}
