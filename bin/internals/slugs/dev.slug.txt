@@ -1,0 +1,74 @@
+/** @format */
+
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: $$widget.color$$; icon-glyph: $$widget.glyph$$;
+
+/**
+ * Method to fetch the devBuild from the devServer using the hostname of the parent system and the widgetName and port
+ * from the user config.
+ *
+ * @param { {} } slug - the data that is passed to the method containing the widget name and the network location to
+ * fetch from
+ */
+
+const fetchDevBuild = async (slug) => {
+	const FM = FileManager.local();
+
+	/**
+	 * @type { string } the filename of the current (this) widget. The filename will be used to create a associated
+	 * folder and run the downloaded widgetcode from there.
+	 */
+
+	const currentFilename = module.filename;
+	let targetDir = currentFilename.replace(
+		FM.fileName(currentFilename, true),
+		FM.fileName(currentFilename, false)
+	);
+
+	/**
+	 * Check if a file exist on the created path, and if it not a directory, remove it.
+	 * Create a new direcotry with the dirname after it
+	 */
+
+	if (FM.fileExists(targetDir) && !FM.isDirectory(targetDir)) {
+		FM.remove(targetDir);
+	}
+	if (!FM.fileExists(targetDir)) {
+		FM.createDirectory(targetDir);
+	}
+
+	/**
+	 * Create a filename for the slug to download to and construct the path
+	 */
+
+	const filename = slug.name + '_development.js';
+	const filepath = FM.joinPath(targetDir, filename);
+
+	/**
+	 * Download the file from the dev api and write the content to the created file
+	 */
+
+	const req = new Request(slug.server);
+	const res = await req.load();
+
+	FM.write(filepath, res);
+
+	return filepath;
+};
+
+const slug = {
+	name: '%widgetname%',
+	server: '%hostname%/widget',
+	arguments: %arguments%
+};
+
+// download and import library
+const devBuild = importModule(await fetchDevBuild(slug));
+
+// create and run the widget
+const widget = await devBuild.createWidget({widgetParameter: slug.arguments });
+!config.runsInWidget && (await widget.presentSmall());
+
+Script.setWidget(widget);
+Script.complete();
