@@ -1,11 +1,12 @@
 {
-	"name": "create-scriptable-app",
+	"name": "create-scriptable-widget",
 	"version": "1.0.0",
 	"description": "A simple way to bootstrap and develop a remote updateable scriptable widget",
 	"author": "Sebastian Heinz",
 	"keywords": [
 		"scriptable",
-		"bootstrapper"
+		"bootstrapper",
+		"widget"
 	],
 	"license": "MIT",
 	"files": [
@@ -14,11 +15,11 @@
 		"license.md",
 		"./bin"
 	],
-	"bin": "./bin/index.js",
+	"bin": "./bin/scripts/bin.mjs",
 	"type": "module",
 	"scripts": {
-		"dev": "node ./bin/dev.mjs",
-		"build": "node ./bin/build.mjs",
+		"dev": "node ./bin/scripts/dev.mjs",
+		"build": "node ./bin/scripts/build.mjs",
 		"clean": "rm -rf ./build/*"
 	},
 	"devDependencies": {
@@ -28,5 +29,8 @@
 		"rollup": "^2.66.1",
 		"rollup-plugin-terser": "^7.0.2",
 		"ws": "^8.4.2"
+	},
+	"imports": {
+		"#internal/*": "./bin/internals/*.mjs"
 	}
 }
