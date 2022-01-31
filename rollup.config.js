@@ -2,6 +2,10 @@
 
 import { terser } from 'rollup-plugin-terser';
 import config from './scriptable.config.js';
+import { hostname } from 'node:os';
+
+const port = process.env.PORT || config.server.port;
+const intro = `const hostname = '${hostname()}:${port}';`;
 
 export default [
 	{
@@ -17,6 +21,7 @@ export default [
 						mangle: config.minify,
 					}),
 				],
+				intro: !process.env.BUILD ? intro : '',
 			},
 		],
 	},
