@@ -62,21 +62,21 @@ export default {
 		 * interfere with each other. -> No effect yet, still @todo.
 		 */
 
-		name: 'myFirstWidget',
+		name: 'development',
 
 		/**
 		 * @type { string }
 		 * Set the glyph of the widget.
 		 */
 
-		glyph: '',
+		glyph: 'screen',
 
 		/**
 		 * @type { string }
 		 * Set the color of the widget icon.
 		 */
 
-		color: '',
+		color: 'blue',
 
 		/**
 		 * @type { string[] }
