@@ -1,5 +1,5 @@
 <!-- @format -->
 
-# 🚀 Create Scriptable App
+# 🚀 Create Scriptable Widget
 
-A simple toolchain to create a development and production enviroment for building a scriptable app with a modern toolchaing.
+A simple toolchain to create a development and production enviroment for building a scriptable app with a modern toolchain.
