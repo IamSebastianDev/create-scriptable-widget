@@ -9,17 +9,17 @@ const App = Express();
 import config from '../../scriptable.config.js';
 
 // import routes
-import { error } from './api/error.mjs';
+import { messages } from './api/messages.mjs';
 import { widget } from './api/widget.mjs';
 
 !config.headless &&
-	App.use(Express.static(path.resolve('./bin/internals/dashboard')));
+	App.use(Express.static(path.resolve('./bin/server/dashboard')));
 App.use(Express.json());
 
 // configure the api routing
 
 App.get('/widget', widget);
-App.post('/error', error);
+App.post('/message', messages);
 
 // start the server
 

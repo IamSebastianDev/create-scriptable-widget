@@ -1,8 +1,7 @@
-/** @format */
 
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
-// icon-color: %color% ; icon-glyph: %glyph% ;
+// icon-color: blue ; icon-glyph: screen ;
 
 /**
  *	This is the slug used for developing the Scriptable widget. The code is copied to a fresh scriptable widget and will
@@ -12,8 +11,8 @@
 const FM = FileManager.local();
 const slug = {
 	name: '%name%',
-	server: '%hostname%/widget',
-	arguments: %arguments%,
+	server: 'http://Sebastians-MBP.fritz.box:31415/widget',
+	arguments: null,
 };
 
 (async () => {

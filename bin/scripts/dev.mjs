@@ -8,10 +8,10 @@
  *  - Invoking RollUp
  */
 
-import { spawnAsync } from './utilities/spawnAsync.mjs';
+import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 import { presentDetails, colours } from 'dev-server-details';
-import { sleep } from './utilities/sleep.mjs';
-import config from '../scriptable.config.js';
+import { sleep } from '../internals/utilities/sleep.mjs';
+import config from '../../scriptable.config.js';
 
 // Starts the bundler in watch mode for incremental builds
 

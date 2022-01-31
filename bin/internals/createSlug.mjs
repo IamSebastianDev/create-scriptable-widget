@@ -19,7 +19,9 @@ const sourceText = await readFile(sourcePath, 'utf-8');
 const slug = sourceText
 	.replace('%widgetname%', config.widget.name)
 	.replace('%hostname%', hostnameAddress)
-	.replace('%arguments%', userArgs);
+	.replace('%arguments%', userArgs)
+	.replace('%color%', config.widget.color)
+	.replace('%glyph%', config.widget.glyph);
 
 const outputPath = path.join(process.cwd(), 'scriptable/dev.slug.js');
 await writeFile(outputPath, slug, 'utf-8');
