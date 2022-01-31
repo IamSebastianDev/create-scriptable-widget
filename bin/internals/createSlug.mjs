@@ -17,7 +17,7 @@ const sourcePath = path.join(process.cwd(), 'bin/internals/slugs/dev.slug.txt');
 const sourceText = await readFile(sourcePath, 'utf-8');
 
 const slug = sourceText
-	.replace('%widgetname%', config.widget.name)
+	.replace('%name%', config.widget.name)
 	.replace('%hostname%', hostnameAddress)
 	.replace('%arguments%', userArgs)
 	.replace('%color%', config.widget.color)
