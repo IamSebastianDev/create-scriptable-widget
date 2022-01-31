@@ -1,11 +1,12 @@
 /** @format */
 
 import { terser } from 'rollup-plugin-terser';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import config from './scriptable.config.js';
 import { hostname } from 'node:os';
 
 const port = process.env.PORT || config.server.port;
-const intro = `const hostname = '${hostname()}:${port}';`;
+const intro = `const HOSTNAME = '${hostname()}:${port}';`;
 
 export default [
 	{
@@ -24,5 +25,6 @@ export default [
 				intro: !process.env.BUILD ? intro : '',
 			},
 		],
+		plugins: [nodeResolve()],
 	},
 ];
