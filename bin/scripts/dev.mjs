@@ -21,15 +21,14 @@ spawnAsync('rollup --config rollup.config.js --watch', undefined, onRollup);
 // Starts the server
 
 const onServer = ({ type, data }) => {};
-spawnAsync('node ./bin/internals/server.mjs', undefined, onServer);
+spawnAsync('node ./bin/server/server.mjs', undefined, onServer);
 
 // Build the dev slug
 
 const onBuild = ({ type, data }) => {};
 spawnAsync('node ./bin/internals/createSlug.mjs', undefined, onBuild);
 
-await sleep(3000);
-console.clear();
+await sleep(10000);
 presentDetails({
 	PORT: process.env.PORT || config.server.port,
 	userText: {
