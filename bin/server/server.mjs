@@ -9,7 +9,7 @@ const App = Express();
 import config from '../../scriptable.config.js';
 
 // import routes
-import { messages } from './api/messages.mjs';
+import { socket } from './api/socket.mjs';
 import { widget } from './api/widget.mjs';
 
 !config.headless &&
@@ -19,7 +19,7 @@ App.use(Express.json());
 // configure the api routing
 
 App.get('/widget', widget);
-App.post('/message', messages);
+App.post('/socket', socket);
 
 // start the server
 

@@ -3,14 +3,14 @@
 import config from '../../../scriptable.config.js';
 import Websocket, { WebSocketServer } from 'ws';
 const wss = new WebSocketServer({
-	port: 8080,
+	port: config.server.websocket || 8080,
 });
 
 wss.on('connection', (ws) => {
-	ws.send(JSON.stringify({ connected: true }));
+	ws.send(JSON.stringify({ type: 'connected' }));
 });
 
-export const messages = async (req, res) => {
+export const socket = async (req, res) => {
 	console.log(req.body);
 
 	wss.clients.forEach((client) => {
