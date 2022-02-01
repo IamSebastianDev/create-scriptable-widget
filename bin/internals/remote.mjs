@@ -15,12 +15,12 @@ const dispatch = async (receive) => {
 		delete data.optionalParams;
 	}
 
-	const payload = JSON.stringify({ message: { type, data } });
-	const address = 'http://' + HOSTNAME + '/message';
+	const payload = { type, data: !data.optionalParams ? data.message : data };
+	const address = 'http://' + HOSTNAME + '/socket';
 	await fetch(address, {
 		method: 'POST',
 		headers: { 'Content-type': 'application/json' },
-		body: payload,
+		body: JSON.stringify(payload),
 	});
 };
 
@@ -64,6 +64,6 @@ export const remote = {
 
 	error: (message, ...optionalParams) => {
 		console.error(message, ...optionalParams);
-		dispatch({ type: warn, data: { message, optionalParams } });
+		dispatch({ type: 'error', data: { message, optionalParams } });
 	},
 };
