@@ -49,6 +49,13 @@ export default {
 		 */
 
 		headless: false,
+
+		/**
+		 * @type { number }
+		 * The port for the websocket connection between server and dashboard
+		 */
+
+		websocket: 8080,
 	},
 
 	/**
