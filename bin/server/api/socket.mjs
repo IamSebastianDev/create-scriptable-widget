@@ -8,6 +8,13 @@ const wss = new WebSocketServer({
 
 wss.on('connection', (ws) => {
 	ws.send(JSON.stringify({ type: 'connected' }));
+
+	ws.on('message', (data) => {
+		const { type } = JSON.parse(data);
+		if (type === 'heartbeat') {
+			ws.send(JSON.stringify({ type: 'heartbeat' }));
+		}
+	});
 });
 
 export const socket = async (req, res) => {
