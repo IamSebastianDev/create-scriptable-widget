@@ -48,7 +48,7 @@ const _DIR = sanitize(args.dir || Object.values(args)[0]);
  */
 
 const _GITREPO =
-	'https://github.com/IamSebastianDev/krankenhausampelbayern.de.git';
+	'https://github.com/IamSebastianDev/create-scriptable-widget.git';
 
 /**
  * Use the spawnAsync wrapper to execute the shell commands and console.log their output.
