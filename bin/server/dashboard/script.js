@@ -17,9 +17,7 @@ const createElem = ({ tag, text, attributes, children }) => {
 
 const createCallbackElem = (elem, type, callback) => {
 	const listener = createElem(elem);
-	listener.addEventListener(type, (ev) => {
-		callback(ev, listener);
-	});
+	listener.addEventListener(type, (ev) => callback(ev, listener));
 	return listener;
 };
 
@@ -27,9 +25,10 @@ const overlay = document.querySelector('#overlay');
 const notifications = document.querySelector('#notifications');
 const logs = document.querySelector('#logs');
 const indicator = document.querySelector('#ws-connection-indicator');
+const scrollLines = document.querySelector('#scroll');
 const socket = new WebSocket(`ws://${window.location.hostname}:8080`);
 
-const TTL = 60 * 1000;
+const TTL = 20 * 1000;
 const dispatchNotification = (notification) => {
 	window.setTimeout(() => {
 		notification.classList.remove('notification__is-active');
@@ -80,7 +79,11 @@ const dispatchLog = ({ type, data }) => {
 			}),
 		],
 	});
-	logs.insertBefore(elem, logs.firstElementChild);
+	logs.appendChild(elem, logs.firstElementChild);
+
+	if (scrollLines.checked) {
+		window.scrollTo(0, document.body.scrollHeight);
+	}
 };
 
 const socketState = {
@@ -94,15 +97,32 @@ const socketState = {
 				})
 			);
 		}
+
+		if (this.__connectionState && !value) {
+			dispatchNotification(
+				createNotifiaction({
+					type: 'connection',
+					text: 'Closed connection to the WebSocket server',
+				})
+			);
+		}
+
 		this.__connectionState = value;
 		indicator.classList.toggle('indicator-active', value);
 	},
 	get connected() {
 		return !this.__connectionState ? false : true;
 	},
+	error: (event) => {
+		dispatchNotification(
+			createNotifiaction({
+				type: 'error',
+				text: event,
+			})
+		);
+	},
+	keepalive: undefined,
 };
-
-console.log({ socketState });
 
 // Listen for messages
 socket.addEventListener('message', function (event) {
@@ -112,9 +132,38 @@ socket.addEventListener('message', function (event) {
 		case 'connected':
 			socketState.connected = true;
 			break;
+		case 'heartbeat':
+			clearTimeout(socketState.keepalive);
+			break;
+		case 'reset':
+			console.log('Reset signal received');
+			break;
 		default:
 			dispatchLog({ type, data });
 			console.log({ type, data });
 			break;
 	}
 });
+
+socket.addEventListener('error', function (event) {
+	socketState.error(event);
+});
+
+socket.addEventListener('close', function (event) {
+	socketState.connected = false;
+});
+
+const sendHeartbeat = () => {
+	const heartbeat = JSON.stringify({ type: 'heartbeat' });
+	socketState.connected && socket.send(heartbeat);
+
+	console.log('WS: Send heartbeat...');
+
+	socketState.keepalive = setTimeout(() => {
+		console.log('WS: Lost connection to the WebSocket server.');
+		socketState.error('Error: Lost connection to the WebSocket server.');
+		socketState.connected = false;
+	}, 10000);
+};
+
+window.setInterval(() => socketState.connected && sendHeartbeat(), 5000);
