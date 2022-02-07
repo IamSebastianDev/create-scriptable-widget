@@ -1,12 +1,12 @@
 /** @format */
 
 :root {
-	--color-ui-dark: hsl(240, 4%, 5%);
+	--color-ui-dark: hsl(240, 4%, 10%);
 	--color-ui-shade: hsl(240, 4%, 15%);
 	--color-ui-light: hsl(240, 4%, 55%);
 	--color-ui-bright: #fff;
 	--color-ui-green: hsl(130, 64%, 55%);
-	--color-ui-yellow: hsl(40, 64%, 55%);
+	--color-ui-yellow: hsl(45, 64%, 55%);
 	--color-ui-red: hsl(0, 64%, 55%);
 }
 
@@ -34,10 +34,19 @@ a {
 	text-decoration: none;
 }
 
+.pangolicons {
+	margin-left: 0.4rem;
+	width: 16px;
+	height: 16px;
+}
+
 #nav {
 	position: fixed;
-	right: 0;
+	display: flex;
+	left: 0;
 	top: 0;
+
+	width: 100vw;
 
 	background: var(--color-ui-dark);
 	z-index: 100;
@@ -45,26 +54,72 @@ a {
 
 .nav-list {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 
 	padding: 0.4rem;
+	margin-left: auto;
 
 	list-style-type: none;
 }
 
+.nav-list li {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#ws-connection-indicator,
 .nav-item {
 	display: flex;
-	padding: 0.8rem;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	padding: 0.4rem;
 	margin: 0.4rem;
 
-	border: 1px solid var(--color-ui-light);
-	border-radius: 100%;
+	font-size: 1rem;
+	font-weight: 400;
 }
 
 a.nav-item:hover {
 	border-color: var(--color-ui-bright);
 	color: var(--color-ui-bright);
+}
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+
+	width: 100vw;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	border-top: 2px solid var(--color-ui-shade);
+	background: var(--color-ui-dark);
+}
+
+.input-container {
+	padding: 1.2em 0;
+	margin: 0 1.2em;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.input-container label {
+	margin-left: 0.4em;
+
+	font-size: 1.2em;
+	color: var(--color-ui-light);
 }
 
 .indicator-active {
@@ -82,17 +137,17 @@ a.nav-item:hover {
 	justify-content: flex-end;
 
 	padding: 1.2em 0;
-	margin: 0 1.2em;
+	margin: 3.4em 1.2em;
 
 	width: 300px;
 	max-height: calc(100vh - 250px);
 	overflow: hidden;
+
+	z-index: 90;
 }
 
 #logs {
-	padding: 1.2em 0;
-	margin: 0 1.2em;
-
+	margin: 3.6rem 1.2em;
 	width: calc(100% - 100px);
 }
 

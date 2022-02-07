@@ -20,41 +20,46 @@
 			<ul class="nav-list">
 				<li>
 					<a
-						href="https://github.com/iamsebastiandev/create-scriptable-widget"
-						target="_blank"
-						rel="noreferrer noopener"
-						class="nav-item"
-						title="Link to the Github repo of the project."
-					>
-						<i pangolicons="github"></i>
-					</a>
-				</li>
-				<li>
-					<a
 						href="https://docs.scriptable.app"
 						target="_blank"
 						rel="noreferrer noopener"
 						class="nav-item"
 						title="Link to the Scriptable Documentation."
 					>
+						Docs
 						<i pangolicons="bookClosed"></i>
 					</a>
 				</li>
 				<li>
-					<span
-						id="ws-connection-indicator"
+					<a
+						href="https://github.com/iamsebastiandev/create-scriptable-widget"
+						target="_blank"
+						rel="noreferrer noopener"
 						class="nav-item"
-						aria-roledescription="Websocket connection status"
+						title="Link to the Github repo of the project."
 					>
-						<i pangolicons="server"></i>
-					</span>
+						Github <i pangolicons="github"></i>
+					</a>
 				</li>
+				<li></li>
 			</ul>
 		</nav>
 		<main>
 			<div id="logs"></div>
 			<div id="notifications"></div>
 		</main>
+		<footer>
+			<div class="input-container">
+				<input type="checkbox" id="scroll" name="scroll" checked />
+				<label for="scroll">Autoscroll with output</label>
+			</div>
+			<span
+				id="ws-connection-indicator"
+				aria-roledescription="Websocket connection status"
+			>
+				<i pangolicons="server"></i>
+			</span>
+		</footer>
 		<div id="overlay"></div>
 		<script src="script.js"></script>
 	</body>
