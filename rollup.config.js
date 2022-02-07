@@ -13,15 +13,9 @@ export default [
 		input: config.input,
 		output: [
 			{
-				file: config.output,
-				format: 'esm',
-				plugins: [
-					terser({
-						module: true,
-						compress: config.minify,
-						mangle: config.minify,
-					}),
-				],
+				file: config.output + config.widget.name + '.bundle.js',
+				format: 'module',
+				plugins: [process.env.BUILD && terser()],
 				intro: !process.env.BUILD ? intro : '',
 			},
 		],
