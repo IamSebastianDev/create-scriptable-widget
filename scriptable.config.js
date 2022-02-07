@@ -3,31 +3,24 @@
 export default {
 	/**
 	 * @type { string }
-	 * The input file. Is used by Rollup as entry. This is where you write your code.
+	 * The input file. Is used by Rollup as entry. This is the entrypoint for your widget.
 	 */
 
 	input: 'src/index.js',
 
 	/**
 	 * @type { string }
-	 * The output file. This is the compiled, minified widget code.
+	 * The output directory for the created files.
 	 */
 
-	output: 'build/widget.js',
+	output: 'build/',
 
 	/**
 	 * @type { string }
 	 * The URL your widget will be published under. This is used by the production slug to download the build widget
 	 */
 
-	producitonURL: undefined,
-
-	/**
-	 * @type { boolean }
-	 * Set to false if you don't want your build to compress & mangle.
-	 */
-
-	minify: true,
+	publicURL: undefined,
 
 	/**
 	 * Properties to configure the express instance hosting the development server.
