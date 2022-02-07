@@ -23,5 +23,9 @@ const slug = sourceText
 	.replace('%color%', config.widget.color)
 	.replace('%glyph%', config.widget.glyph);
 
-const outputPath = path.join(process.cwd(), 'scriptable/dev.slug.js');
+const outputPath = path.join(
+	process.cwd(),
+	config.output,
+	config.widget.name + '.widget.js'
+);
 await writeFile(outputPath, slug, 'utf-8');
