@@ -48,9 +48,14 @@ const slug = {
 	 * to gurantee a fresh file on every refresh.
 	 */
 
-	const req = new Request(slug.server);
-	const res = await req.load();
-	FM.write(targetFileName, res);
+	try {
+		const req = new Request(slug.server);
+		const res = await req.load();
+		
+		FM.write(targetFileName, res);
+	} catch(e) {
+		 console.error("CSW: Could not establish connection to the development server.")
+	}
 
 	/**
 	 * Impprt and execute the bundle from the created file. The method is wrapped in a try catch so
