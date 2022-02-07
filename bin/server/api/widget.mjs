@@ -10,7 +10,11 @@ import config from '../../../scriptable.config.js';
  */
 
 export const widget = async (req, res) => {
-	const filepath = path.join(process.cwd(), config.output);
+	const filepath = path.join(
+		process.cwd(),
+		config.output,
+		config.widget.name + '.bundle.js'
+	);
 	const file = await fs.readFile(filepath, 'utf-8');
 	res.send(file);
 };
