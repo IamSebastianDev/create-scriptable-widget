@@ -1,6 +1,5 @@
 node_modules
-build
-scriptable
+.dev
 .env
 
 *.zip
