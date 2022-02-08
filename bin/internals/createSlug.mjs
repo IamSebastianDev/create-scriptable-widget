@@ -2,6 +2,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { assertDir } from './utilities/assertDir.mjs';
 import { hostname } from 'node:os';
 import config from '../../scriptable.config.js';
 
@@ -33,4 +34,6 @@ const outputPath = path.join(
 	process.env.BUILD ? config.output : config.dev,
 	config.widget.name + `${process.env.BUILD ? '' : '.dev'}.widget.js`
 );
+
+await assertDir(process.env.BUILD ? config.output : config.dev);
 await writeFile(outputPath, slug, 'utf-8');
