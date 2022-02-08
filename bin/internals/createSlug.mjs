@@ -9,11 +9,15 @@ const port = process.env.PORT || config.server.port;
 const hostnameAddress = `http://${hostname()}:${port}`;
 
 const userArgs =
-	config.widget.arguments.length !== 0
-		? `'${config.widget.arguments.join(' ')}'`
-		: null;
+	config.widget.arguments.length !== 0 &&
+	`'${config.widget.arguments.join(' ')}'`;
 
-const sourcePath = path.join(process.cwd(), 'bin/internals/slugs/dev.slug.txt');
+const sourcePath = path.join(
+	process.cwd(),
+	process.env.BUILD
+		? 'bin/internals/slugs/build.slug.txt'
+		: 'bin/internals/slugs/dev.slug.txt'
+);
 const sourceText = await readFile(sourcePath, 'utf-8');
 
 const slug = sourceText
@@ -21,11 +25,12 @@ const slug = sourceText
 	.replace('%hostname%', hostnameAddress)
 	.replace('%arguments%', userArgs)
 	.replace('%color%', config.widget.color)
-	.replace('%glyph%', config.widget.glyph);
+	.replace('%glyph%', config.widget.glyph)
+	.replace('%publicurl%', config.publicURL);
 
 const outputPath = path.join(
 	process.cwd(),
-	config.output,
-	config.widget.name + '.widget.js'
+	process.env.BUILD ? config.output : config.dev,
+	config.widget.name + `${process.env.BUILD ? '' : '.dev'}.widget.js`
 );
 await writeFile(outputPath, slug, 'utf-8');
