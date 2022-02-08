@@ -103,47 +103,25 @@ footer {
 
 	border-top: 2px solid var(--color-ui-shade);
 	background: var(--color-ui-dark);
+
+	font-size: 1.2em;
+	color: var(--color-ui-light);
 }
 
-.input-container {
-	padding: 1.2em 0;
-	margin: 0 1.2em;
-
+.flex-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 }
 
-.input-container label {
-	margin-left: 0.4em;
-
-	font-size: 1.2em;
-	color: var(--color-ui-light);
+.flex-container input {
+	margin: 0 0.8em;
 }
 
 .indicator-active {
 	border-color: var(--color-ui-green);
 	color: var(--color-ui-green);
-}
-
-#notifications {
-	position: fixed;
-	right: 0;
-	bottom: 0;
-
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-
-	padding: 1.2em 0;
-	margin: 3.4em 1.2em;
-
-	width: 300px;
-	max-height: calc(100vh - 250px);
-	overflow: hidden;
-
-	z-index: 90;
 }
 
 #logs {
@@ -177,6 +155,25 @@ div[type='warn'] {
 div[type='error'] {
 	color: var(--color-ui-red);
 	border-color: var(--color-ui-red);
+}
+
+#notifications {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	padding: 1.2em 0;
+	margin: 4.2em 1.2em;
+
+	width: 300px;
+	max-height: calc(100vh - 250px);
+	overflow: hidden;
+
+	z-index: 90;
 }
 
 .notification__body {

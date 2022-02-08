@@ -49,18 +49,20 @@
 			<div id="notifications"></div>
 		</main>
 		<footer>
-			<div class="input-container">
+			<div class="flex-container">
 				<input type="checkbox" id="scroll" name="scroll" checked />
 				<label for="scroll">Autoscroll with output</label>
 			</div>
-			<span
-				id="ws-connection-indicator"
-				aria-roledescription="Websocket connection status"
-			>
-				<i pangolicons="server"></i>
-			</span>
+			<div class="flex-container">
+				Connection:
+				<span
+					id="ws-connection-indicator"
+					aria-roledescription="Websocket connection status"
+				>
+					<i pangolicons="server"></i>
+				</span>
+			</div>
 		</footer>
-		<div id="overlay"></div>
 		<script src="script.js"></script>
 	</body>
 </html>

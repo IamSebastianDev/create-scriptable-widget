@@ -21,7 +21,6 @@ const createCallbackElem = (elem, type, callback) => {
 	return listener;
 };
 
-const overlay = document.querySelector('#overlay');
 const notifications = document.querySelector('#notifications');
 const logs = document.querySelector('#logs');
 const indicator = document.querySelector('#ws-connection-indicator');
