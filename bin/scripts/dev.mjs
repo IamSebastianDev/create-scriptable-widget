@@ -12,7 +12,7 @@ import { watch } from 'node:fs/promises';
 import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 import { presentDetails, colours } from 'dev-server-details';
 import config from '../../scriptable.config.js';
-import { developmentMessage } from './cliOutputs.mjs';
+import { developmentMessage } from '../internals/utilities/cliOutputs.mjs';
 
 /**
  * Build the inital bundle for deployment, and create the fileWatcher that will incremently rebuild the bundle
