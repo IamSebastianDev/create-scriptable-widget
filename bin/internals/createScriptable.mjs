@@ -17,12 +17,14 @@ const widgetPath = path.join(
 );
 
 const scriptable = {
+	always_run_in_app: false,
 	icon: {
 		color,
 		glyph,
 	},
 	name,
 	script: await readFile(widgetPath, 'utf-8'),
+	share_sheet_inputs: [],
 };
 
 try {
