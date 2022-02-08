@@ -28,8 +28,7 @@ export default {
 	 * widget
 	 */
 
-	publicURL:
-		'https://raw.githubusercontent.com/IamSebastianDev/create-scriptable-widget/master/build',
+	publicURL: undefined,
 
 	/**
 	 * Properties to configure the express instance hosting the development server.
@@ -79,21 +78,21 @@ export default {
 		 * interfere with each other. -> No effect yet, still @todo.
 		 */
 
-		name: 'development',
+		name: undefined,
 
 		/**
 		 * @type { string }
 		 * Set the glyph of the widget.
 		 */
 
-		glyph: 'screen',
+		glyph: undefined,
 
 		/**
 		 * @type { string }
 		 * Set the color of the widget icon.
 		 */
 
-		color: 'blue',
+		color: undefined,
 
 		/**
 		 * @type { string[] }
