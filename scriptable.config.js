@@ -17,10 +17,19 @@ export default {
 
 	/**
 	 * @type { string }
-	 * The URL your widget will be published under. This is used by the production slug to download the build widget
+	 * The temporary development directory
 	 */
 
-	publicURL: undefined,
+	dev: '.dev/',
+
+	/**
+	 * @type { string }
+	 * The URL your widgetfiles will be published under. This is used by the production slug to download the build
+	 * widget
+	 */
+
+	publicURL:
+		'https://raw.githubusercontent.com/IamSebastianDev/create-scriptable-widget/master/build',
 
 	/**
 	 * Properties to configure the express instance hosting the development server.
@@ -56,6 +65,14 @@ export default {
 	 */
 
 	widget: {
+		/**
+		 * @type { string }
+		 * The version number of your widget. The consumer side widget will only update when the version number is
+		 * larger then the existing version. This will prevent unnecessary downloads
+		 */
+
+		version: '1.0.0',
+
 		/**
 		 * @type { string }
 		 * The name of the widget. Will be used to create a custom namespace so that multiple developments don't
