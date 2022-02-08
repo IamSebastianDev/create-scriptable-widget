@@ -16,6 +16,9 @@ import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 
 process.env.BUILD = 'TRUE';
 
+// clear the build dir before creating the new files
+await spawnAsync('rm -rf ./build');
+
 // generate the main bundle file
 await spawnAsync('rollup --config rollup.config.js');
 
