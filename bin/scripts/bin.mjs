@@ -2,7 +2,6 @@
 
 /** @format */
 
-import { namespaces } from '../internals/utilities/namespace.mjs';
 import { getEnvArgs } from '../internals/utilities/getEnvArgs.mjs';
 import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 
@@ -59,5 +58,5 @@ await spawnAsync(`rm -rf ${_DIR}/.git`);
 await spawnAsync(`npm install`, { cwd: _DIR });
 
 console.log(
-	`${namespaces.cli} Success. You can now use cd ${_DIR} and npm run dev to start the development process.`
+	`\x1b[1m\x1b[36mcreate-scriptable-app:\x1b[0mSuccess. You can now use cd ${_DIR} and npm run dev to start the development process.`
 );
