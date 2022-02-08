@@ -1,6 +1,6 @@
 {
 	"name": "create-scriptable-widget",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "A simple way to bootstrap and develop a remote updateable scriptable widget",
 	"author": "Sebastian Heinz",
 	"keywords": [
@@ -9,12 +9,6 @@
 		"widget"
 	],
 	"license": "MIT",
-	"files": [
-		"package.json",
-		"readme.md",
-		"license.md",
-		"./bin"
-	],
 	"bin": "./bin/scripts/bin.mjs",
 	"type": "module",
 	"scripts": {
