@@ -11,6 +11,21 @@
  */
 
 import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
+import config from '../../scriptable.config.js';
+import { colour } from '../internals/utilities/colour.mjs';
+const logError = (string) => colour.namespace('red', `Error: ` + string);
+
+// check if the widget has a name, and if not, exit.
+/** @todo: These check might be better refractored to a config parser file. */
+if (!config.publicURL || typeof config.publicURL !== 'string') {
+	console.log(
+		logError(
+			'You have not defined a publicURL. Without a public url, your widget will not work. Consult the documentation on more information, then set a public url in the scriptable.config.js file.'
+		)
+	);
+
+	process.exit(1);
+}
 
 // set the build flag
 
@@ -26,3 +41,7 @@ await spawnAsync('rollup --config rollup.config.js');
 await spawnAsync('node ./bin/internals/createSlug.mjs');
 await spawnAsync('node ./bin/internals/createMeta.mjs');
 await spawnAsync('node ./bin/internals/createScriptable.mjs');
+
+// reset the build flag
+
+process.env.BUILD = 'FALSE';
