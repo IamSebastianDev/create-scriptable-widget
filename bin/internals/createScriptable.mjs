@@ -12,8 +12,8 @@ const { color, glyph, name } = config.widget;
 
 const widgetPath = path.join(
 	process.cwd(),
-	config.dev,
-	config.widget.name + '.dev.widget.js'
+	config.output,
+	config.widget.name + '.widget.js'
 );
 
 const scriptable = {
