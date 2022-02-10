@@ -29,12 +29,24 @@ if (!config.widget.name || typeof config.widget.name !== 'string') {
 	process.exit(1);
 }
 
+if (config.widget.name.includes(' ')) {
+	console.log(
+		logError(
+			'The name of the widget cannot contain any spaces. Please fix that.'
+		)
+	);
+	process.exit(1);
+}
+
 /**
  * Build the inital bundle for deployment, and create the fileWatcher that will incremently rebuild the bundle
  * when a change in the src folder is detected.
  */
 
-const rootPath = config.input.split('/').pop().join('/');
+const rootPath = config.input
+	.split('/')
+	.filter((elem, i, arr) => i !== arr.length)
+	.join('/');
 
 await spawnAsync('rollup --config rollup.config.js');
 (async () => {
