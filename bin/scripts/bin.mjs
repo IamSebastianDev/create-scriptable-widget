@@ -54,7 +54,7 @@ const ensureDirectory = async (args) => {
 	if (numberOfArguments !== 1 && (!args.dir || typeof args.dir != 'string')) {
 		console.log(
 			logError(
-				'No valid directory argument was passed to the creator. Pass only a single string to the command or use the --dir flag to provide a directory.'
+				'No valid directory argument was passed to the creator. Pass only a single string without spaces to the command or use the --dir flag to provide a directory.'
 			)
 		);
 		process.exit(9);
