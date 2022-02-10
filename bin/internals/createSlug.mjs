@@ -25,8 +25,6 @@ const slug = sourceText
 	.replace('%name%', config.widget.name)
 	.replace('%hostname%', hostnameAddress)
 	.replace('%arguments%', userArgs)
-	.replace('%color%', config.widget.color)
-	.replace('%glyph%', config.widget.glyph)
 	.replace('%publicurl%', config.publicURL);
 
 const outputPath = path.join(

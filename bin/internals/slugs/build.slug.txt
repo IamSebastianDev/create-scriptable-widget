@@ -1,9 +1,5 @@
 /** @format */
 
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: %colour% ; icon-glyph: %glyph% ;
-
 /**
  *	This widget is used to download the most current version of the widget if the version in the existing file does not
  *  match the published version number in the meta data file.
@@ -13,6 +9,18 @@ const FM = FileManager.local();
 const slug = {
 	name: '%name%',
 	origin: '%publicurl%',
+};
+
+const downloadBundle = async (bundlePath) => {
+	try {
+		const path = slug.origin + `${slug.name}.bundle.js`;
+		const req = new Request(path);
+		const res = await req.load();
+
+		FM.write(bundlePath, res);
+	} catch (e) {
+		console.error(e);
+	}
 };
 
 (async () => {
@@ -36,7 +44,7 @@ const slug = {
 
 		version = res.version;
 	} catch (e) {
-		throw new Error('Could not find version file.');
+		console.error('Could not find version file.');
 	}
 
 	/**
@@ -50,34 +58,22 @@ const slug = {
 
 	/** create the path of the bundle */
 
-	const bundleName = slug.name + '.' + version + '.bundle.js';
+	const bundleName = `${slug.name}.${version}.bundle.js`;
 	const bundlePath = FM.joinPath(targetDirName, bundleName);
 
 	/**
 	 * check if a bundle already exists in the directory, and if not, delete all files inside the folder containing
 	 * the name of the widget after checking for a version mismatch. This is to make sure that no unrelated files get
-	 * deleted and then download the bundle.
+	 * deleted and then download the bundle. -> Right now, the bundle is updated when a version mismatch exists. It
+	 * would be better to check for a version increase and always serve the highest version.
 	 */
 
-	if (!FM.fileExists(bundlePath)) {
-		const files = FM.listContents(targetDirName);
-		const widgetFiles = files.filter((elem) => elem.includes(slug.name));
-
-		/**
-		 * The widgetFiles array should now containg only the bundle file, where we want to extract the version number
-		 * from. As a version number is always in the format of [N.N.N], a regex should suffice.
-		 */
-
-		const vRegex = new RegExp(/\d{1,3}\.\d{1,3}\.\d{1,3}/gim);
-		const localVersion = widgetFiles[0].match(vRegex)[0];
-		const mismatch = version.localeCompare(localVersion, undefined, {
-			numeric: true,
-			sensitivity: 'base',
-		});
-
-		// if the version is larger then the localVersion, fetch and write the new bundle, else continue without
-
-		if (mismatch === 1) {
+	try {
+		if (!FM.fileExists(bundlePath)) {
+			const files = FM.listContents(targetDirName);
+			const widgetFiles = files.filter((elem) =>
+				elem.includes(slug.name)
+			);
 			widgetFiles.forEach((file) =>
 				FM.remove(FM.joinPath(targetDirName, file))
 			);
@@ -89,17 +85,15 @@ const slug = {
 			 */
 
 			try {
-				const path = slug.origin + `/${slug.name}.bundle.js`;
-				const req = new Request(path);
-				const res = await req.load();
-
-				FM.write(bundlePath, res);
+				await downloadBundle(bundlePath);
 			} catch (e) {
 				console.error(
 					'CSW: Could not find bundle at the specified URL.'
 				);
 			}
 		}
+	} catch (e) {
+		console.error(e);
 	}
 
 	/**
@@ -109,9 +103,8 @@ const slug = {
 	 * imported module.
 	 */
 
-	const bundle = importModule(bundlePath);
-
 	try {
+		const bundle = importModule(bundlePath);
 		const widget = await bundle(args.widgetParameter);
 		!config.runsInWidget && (await widget.presentSmall());
 
