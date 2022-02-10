@@ -1,9 +1,5 @@
 /** @format */
 
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: %color% ; icon-glyph: %glyph% ;
-
 /**
  *	This is the slug used for developing the Scriptable widget. The code is copied to a fresh scriptable widget and will
  *	subsequently fetch the freshly build code on every refresh, significantly simplifying the process.
@@ -27,7 +23,7 @@ const slug = {
 
 	/**
 	 * Check if a directory with the current namespace already exsists. If the directory exists, delete it and it's
-	 * contents and then recreate it. If a file exists at the location the directory should be created, throw an error
+	 * contents and then recreate it.
 	 */
 
 	const targetDirName = FM.joinPath(__root, slug.name);
@@ -35,10 +31,6 @@ const slug = {
 
 	if (FM.fileExists(targetDirName) && FM.isDirectory(targetDirName)) {
 		FM.remove(targetDirName);
-	} else {
-		throw new Error(
-			`CSW: ${targetDirName} already exists, but it not a directory. Make sure there are no conflicts or remove the file/directory manually.`
-		);
 	}
 	FM.createDirectory(targetDirName);
 
