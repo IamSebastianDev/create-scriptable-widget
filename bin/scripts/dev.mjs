@@ -1,4 +1,5 @@
 /** @format */
+/** @todo: improve documentation and do a code quality pass */
 
 /**
  * This file is invoked by the npm run dev command.
@@ -13,16 +14,27 @@ import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 import { presentDetails, colours } from 'dev-server-details';
 import config from '../../scriptable.config.js';
 import { developmentMessage } from '../internals/utilities/cliOutputs.mjs';
+import { colour } from '../internals/utilities/colour.mjs';
+const logError = (string) => colour.namespace('red', `Error: ` + string);
+
+// check if the widget has a name, and if not, exit.
+/** @todo: These check might be better refractored to a config parser file. */
+if (!config.widget.name || typeof config.widget.name !== 'string') {
+	console.log(
+		logError(
+			'Your widget has no name. Please fix that. > scriptable.config.js > widget > name.'
+		)
+	);
+
+	process.exit(1);
+}
 
 /**
  * Build the inital bundle for deployment, and create the fileWatcher that will incremently rebuild the bundle
  * when a change in the src folder is detected.
  */
 
-const rootPath = config.input
-	.split('/')
-	.filter((elem) => !elem.includes('.'))
-	.join('/');
+const rootPath = config.input.split('/').pop().join('/');
 
 await spawnAsync('rollup --config rollup.config.js');
 (async () => {
