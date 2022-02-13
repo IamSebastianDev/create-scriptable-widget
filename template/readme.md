@@ -25,7 +25,7 @@ After building the widget, you can publish it to your consumers, as the widget i
 
 # 📜 Documentation
 
-You can learn more about creating a scriptable widget and using this package in the [documentation](https://github.com/iamsebastiandev/create-scriptable-widget/docs).
+You can learn more about creating a scriptable widget and using this package in the [documentation](https://github.com/IamSebastianDev/create-scriptable-widget/tree/master/docs).
 
 Learn more about the project [here](https://create-scriptable-widget.vercel.app).
 
