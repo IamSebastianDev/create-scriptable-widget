@@ -1,6 +1,6 @@
 {
 	"name": "create-scriptable-widget",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "A simple way to bootstrap and develop a remote updateable scriptable widget",
 	"author": "Sebastian Heinz",
 	"keywords": [
@@ -15,8 +15,5 @@
 		"dev": "node ./bin/scripts/dev.mjs",
 		"build": "node ./bin/scripts/build.mjs",
 		"clean": "rm -rf ./build/*"
-	},
-	"imports": {
-		"#lib/*": "./bin/internals/lib/*.mjs"
 	}
 }

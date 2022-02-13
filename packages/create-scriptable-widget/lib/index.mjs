@@ -1,4 +1,4 @@
 /** @format */
 
-export { remote } from '#lib/remote.mjs';
-export { fetch } from '#lib/fetch.mjs';
+export { remote } from '../bin/internals/lib/remote.mjs';
+export { fetch } from '../bin/internals/lib/fetch.mjs';
