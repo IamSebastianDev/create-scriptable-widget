@@ -2,11 +2,11 @@
 
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import config from '../../scriptable.config.js';
+import config, { __root } from '../../../config.mjs';
 
 try {
 	const outputPath = path.join(
-		process.cwd(),
+		__root,
 		config.output,
 		config.widget.name + '.meta.json'
 	);

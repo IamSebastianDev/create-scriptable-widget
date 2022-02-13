@@ -12,7 +12,7 @@
 import { watch } from 'node:fs/promises';
 import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 import { presentDetails, colours } from 'dev-server-details';
-import config from '../../scriptable.config.js';
+import config, { __root } from '../../config.mjs';
 import { developmentMessage } from '../internals/utilities/cliOutputs.mjs';
 import { colour } from '../internals/utilities/colour.mjs';
 const logError = (string) => colour.namespace('red', `Error: ` + string);
@@ -51,7 +51,7 @@ const rootPath = config.input
 await spawnAsync('rollup --config rollup.config.js');
 (async () => {
 	const { signal } = new AbortController();
-	const watcher = watch(rootPath, { signal, recursive: true });
+	const watcher = watch(__root + rootPath, { signal, recursive: true });
 	for await (const event of watcher) {
 		try {
 			spawnAsync('rollup --config rollup.config.js');

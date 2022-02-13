@@ -2,7 +2,7 @@
 
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import config from '../../../scriptable.config.js';
+import config, { __root } from '../../../config.mjs';
 
 /**
  * Method to supply the widget code found in the configured build output to the consumer.
@@ -11,7 +11,7 @@ import config from '../../../scriptable.config.js';
 
 export const widget = async (req, res) => {
 	const filepath = path.join(
-		process.cwd(),
+		__root,
 		config.output,
 		config.widget.name + '.bundle.js'
 	);

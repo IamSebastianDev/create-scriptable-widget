@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { assertDir } from './utilities/assertDir.mjs';
 import { hostname } from 'node:os';
-import config from '../../scriptable.config.js';
+import config, { __root } from '../../config.mjs';
 
 const port = process.env.PORT || config.server.port;
 const hostnameAddress = `http://${hostname()}:${port}`;
@@ -28,7 +28,7 @@ const slug = sourceText
 	.replace('%publicurl%', config.publicURL);
 
 const outputPath = path.join(
-	process.cwd(),
+	__root,
 	process.env.BUILD ? config.output : config.dev,
 	config.widget.name + `${process.env.BUILD ? '' : '.dev'}.widget.js`
 );

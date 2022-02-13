@@ -1,7 +1,7 @@
 /** @format */
 
 import path from 'node:path';
-import config from '../../../scriptable.config.js';
+import config, { __root } from '../../../config.mjs';
 
 const outputPath = path.join(config.dev, config.widget.name + '.dev.widget.js');
 

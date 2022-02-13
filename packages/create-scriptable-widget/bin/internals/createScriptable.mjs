@@ -6,12 +6,12 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import config from '../../scriptable.config.js';
+import config, { __root } from '../../../config.mjs';
 
 const { color, glyph, name } = config.widget;
 
 const widgetPath = path.join(
-	process.cwd(),
+	__root,
 	config.output,
 	config.widget.name + '.widget.js'
 );
@@ -29,7 +29,7 @@ const scriptable = {
 
 try {
 	const outputPath = path.join(
-		process.cwd(),
+		__root,
 		config.output,
 		config.widget.name + '.scriptable'
 	);

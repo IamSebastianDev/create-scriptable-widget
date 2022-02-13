@@ -6,7 +6,7 @@ import Express from 'express';
 const App = Express();
 
 // import the user config
-import config from '../../scriptable.config.js';
+import config from '../../config.mjs';
 
 // import routes
 import { socket } from './api/socket.mjs';

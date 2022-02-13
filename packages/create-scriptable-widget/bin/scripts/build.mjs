@@ -11,7 +11,7 @@
  */
 
 import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
-import config from '../../scriptable.config.js';
+import config, { __root } from '../../config.mjs';
 import { colour } from '../internals/utilities/colour.mjs';
 const logError = (string) => colour.namespace('red', `Error: ` + string);
 
@@ -32,10 +32,10 @@ if (!config.publicURL || typeof config.publicURL !== 'string') {
 process.env.BUILD = 'TRUE';
 
 // clear the build dir before creating the new files
-await spawnAsync('rm -rf ./build');
+await spawnAsync('rm -rf ./build', { cwd: __root });
 
 // generate the main bundle file
-await spawnAsync('rollup --config rollup.config.js');
+await spawnAsync('rollup --config rollup.config.js', { cwd: __root });
 
 // Build the requiered files
 await spawnAsync('node ./bin/internals/createSlug.mjs');

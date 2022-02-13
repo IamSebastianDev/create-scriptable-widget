@@ -1,6 +1,6 @@
 /** @format */
 
-import config from '../../../scriptable.config.js';
+import config, { __root } from '../../../config.mjs';
 import Websocket, { WebSocketServer } from 'ws';
 const wss = new WebSocketServer({
 	port: config.server.websocket || 8080,
