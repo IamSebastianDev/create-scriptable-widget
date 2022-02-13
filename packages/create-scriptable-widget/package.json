@@ -1,6 +1,6 @@
 {
 	"name": "create-scriptable-widget",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "A simple way to bootstrap and develop a remote updateable scriptable widget",
 	"author": "Sebastian Heinz",
 	"keywords": [
