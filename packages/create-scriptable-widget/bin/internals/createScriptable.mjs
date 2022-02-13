@@ -11,7 +11,7 @@ import config, { __root } from '../../config.mjs';
 const { color, glyph, name } = config.widget;
 
 const widgetPath = path.join(
-	process.cwd(),
+	__root,
 	config.output,
 	config.widget.name + '.widget.js'
 );
