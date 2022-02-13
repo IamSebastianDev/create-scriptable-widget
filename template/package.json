@@ -15,7 +15,7 @@
 		"clean": "rm -rf ./build/*"
 	},
 	"devDependencies": {
-		"create-scriptable-widget": "^0.2.0",
+		"create-scriptable-widget": "0.4.1",
 		"@rollup/plugin-node-resolve": "^13.1.3",
 		"@types/scriptable-ios": "^1.6.4",
 		"dev-server-details": "^1.1.0",
