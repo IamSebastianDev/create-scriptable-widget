@@ -13,12 +13,10 @@ const userArgs =
 	config.widget.arguments.length !== 0 &&
 	`'${config.widget.arguments.join(' ')}'`;
 
-const sourcePath = path.join(
-	process.cwd(),
-	process.env.BUILD
-		? 'bin/internals/slugs/build.slug.txt'
-		: 'bin/internals/slugs/dev.slug.txt'
-);
+const sourcePath = process.env.BUILD
+	? './bin/internals/slugs/build.slug.txt'
+	: './bin/internals/slugs/dev.slug.txt';
+
 const sourceText = await readFile(sourcePath, 'utf-8');
 
 const slug = sourceText
@@ -28,7 +26,7 @@ const slug = sourceText
 	.replace('%publicurl%', config.publicURL);
 
 const outputPath = path.join(
-	__root,
+	process.cwd(),
 	process.env.BUILD ? config.output : config.dev,
 	config.widget.name + `${process.env.BUILD ? '' : '.dev'}.widget.js`
 );

@@ -63,10 +63,10 @@ await spawnAsync('rollup --config rollup.config.js');
 })();
 
 // Starts the server
-spawnAsync('node ./bin/server/server.mjs');
+spawnAsync('node ./bin/server/server.mjs', { cwd: __root });
 
 // Build the dev slug
-spawnAsync('node ./bin/internals/createSlug.mjs');
+spawnAsync('node ./bin/internals/createSlug.mjs', { cwd: __root });
 
 presentDetails({
 	PORT: process.env.PORT || config.server.port,

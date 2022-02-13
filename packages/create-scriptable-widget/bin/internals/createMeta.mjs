@@ -6,7 +6,7 @@ import config, { __root } from '../../../config.mjs';
 
 try {
 	const outputPath = path.join(
-		__root,
+		process.cwd(),
 		config.output,
 		config.widget.name + '.meta.json'
 	);

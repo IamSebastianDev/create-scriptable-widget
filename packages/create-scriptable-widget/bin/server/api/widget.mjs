@@ -11,7 +11,7 @@ import config, { __root } from '../../../config.mjs';
 
 export const widget = async (req, res) => {
 	const filepath = path.join(
-		__root,
+		process.cwd(),
 		config.output,
 		config.widget.name + '.bundle.js'
 	);

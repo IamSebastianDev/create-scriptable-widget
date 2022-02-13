@@ -1,11 +1,5 @@
 node_modules
-.dev
 .env
-rollup.config.js
-scriptable.config.js
-build
-docs
-src
 
 *.zip
 
