@@ -10,8 +10,8 @@
 	"bin": "./bin/scripts/bin.mjs",
 	"type": "module",
 	"scripts": {
-		"dev": "create-scriptable-widget dev",
-		"build": "create-scriptable-widget build",
+		"dev": "npm explore create-scriptable-widget -- npm run dev",
+		"build": "npm explore create-scriptable-widget -- npm run build",
 		"clean": "rm -rf ./build/*"
 	},
 	"devDependencies": {
