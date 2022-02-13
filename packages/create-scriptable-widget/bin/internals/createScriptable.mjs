@@ -6,7 +6,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import config, { __root } from '../../../config.mjs';
+import config, { __root } from '../../config.mjs';
 
 const { color, glyph, name } = config.widget;
 

@@ -2,7 +2,7 @@
 
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import config, { __root } from '../../../config.mjs';
+import config, { __root } from '../../config.mjs';
 
 try {
 	const outputPath = path.join(
