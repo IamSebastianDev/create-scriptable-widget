@@ -1,6 +1,6 @@
 {
-	"name": "create-scriptable-widget",
-	"version": "0.2.2",
+	"name": "csw",
+	"version": "1.0.0",
 	"description": "A simple way to bootstrap and develop a remote updateable scriptable widget",
 	"author": "Sebastian Heinz",
 	"keywords": [
@@ -9,13 +9,11 @@
 		"widget"
 	],
 	"license": "MIT",
-	"bin": "./bin/scripts/bin.mjs",
-	"type": "module",
-	"scripts": {
-		"dev": "node ./bin/scripts/dev.mjs",
-		"build": "node ./bin/scripts/build.mjs",
-		"clean": "rm -rf ./build/*"
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/iamsebastiandev/create-scriptable-widget.git"
 	},
+	"type": "module",
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^13.1.3",
 		"@types/scriptable-ios": "^1.6.4",
@@ -24,8 +22,5 @@
 		"rollup": "^2.66.1",
 		"rollup-plugin-terser": "^7.0.2",
 		"ws": "^8.4.2"
-	},
-	"imports": {
-		"#lib/*": "./bin/internals/lib/*.mjs"
 	}
 }
