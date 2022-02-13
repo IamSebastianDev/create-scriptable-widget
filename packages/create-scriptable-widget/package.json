@@ -15,5 +15,8 @@
 		"dev": "node ./bin/scripts/dev.mjs",
 		"build": "node ./bin/scripts/build.mjs",
 		"clean": "rm -rf ./build/*"
+	},
+	"imports": {
+		"#lib/*": "./bin/internals/lib/*.mjs"
 	}
 }
