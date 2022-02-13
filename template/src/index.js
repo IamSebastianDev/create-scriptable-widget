@@ -1,6 +1,5 @@
 /** @format */
 
-import { remote } from '#lib/remote';
 import image from './image.js';
 
 module.exports = async (config) => {
@@ -11,8 +10,6 @@ module.exports = async (config) => {
 	gradient.colors = [new Color('#313e5e', 1), Color.black()];
 	gradient.locations = [0, 1];
 	widget.backgroundGradient = gradient;
-
-	remote.log('data');
 
 	widget.setPadding(20, 10, 10, 10);
 	widget.addSpacer(4);
