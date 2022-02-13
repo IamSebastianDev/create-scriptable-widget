@@ -28,11 +28,14 @@ const slug = sourceText
 	.replace('%arguments%', userArgs)
 	.replace('%publicurl%', config.publicURL);
 
-const outputPath = path.join(
+const outputDir = path.join(
 	__root,
-	process.env.BUILD ? config.output : config.dev,
+	process.env.BUILD ? config.output : config.dev
+);
+const outputPath = path.join(
+	outputDir,
 	config.widget.name + `${process.env.BUILD ? '' : '.dev'}.widget.js`
 );
 
-await assertDir(process.env.BUILD ? config.output : config.dev);
+await assertDir(outputDir);
 await writeFile(outputPath, slug, 'utf-8');

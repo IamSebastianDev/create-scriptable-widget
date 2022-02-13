@@ -48,13 +48,13 @@ const rootPath = config.input
 	.filter((elem, i, arr) => i !== arr.length)
 	.join('/');
 
-await spawnAsync('rollup --config rollup.config.js');
+await spawnAsync('rollup --config rollup.config.js', { cwd: __root });
 (async () => {
 	const { signal } = new AbortController();
 	const watcher = watch(__root + rootPath, { signal, recursive: true });
 	for await (const event of watcher) {
 		try {
-			spawnAsync('rollup --config rollup.config.js');
+			spawnAsync('rollup --config rollup.config.js', { cwd: __root });
 		} catch (err) {
 			if (err.name === 'AbortError') return;
 			throw err;
