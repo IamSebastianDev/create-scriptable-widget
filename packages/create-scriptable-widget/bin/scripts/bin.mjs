@@ -9,6 +9,8 @@ import { getEnvArgs } from '../internals/utilities/getEnvArgs.mjs';
 import { spawnAsync } from '../internals/utilities/spawnAsync.mjs';
 import { colour } from '../internals/utilities/colour.mjs';
 
+const _TEMPLATE = `https://github.com/IamSebastianDev/Create-Scriptable-Template.git`;
+
 /**
  * This is the main executable file enabling npx create-scriptable-app. The execute will clone this repo to the user
  * specified folder and execute a npm i to install all necessary scripts. It will then log a custom message to instruct
@@ -87,8 +89,6 @@ const setName = async (name) => {
 		console.log(e);
 	}
 };
-
-const _TEMPLATE = `https://github.com/IamSebastianDev/create-scriptable-widget.git`;
 
 (async () => {
 	const args = getEnvArgs();
