@@ -18,7 +18,7 @@ The main binary package that contains the executable bin script that will copy t
 
 A loose, tree-shakeable collection of extensions, tools and polyfills to enhance and extend scriptable.
 
-## packages/scriptable-umd
+## packages/scriptable-uml
 
 A simple script that can be used to easily load modules into your scriptable widget without using a bundler.
 
@@ -34,8 +34,8 @@ The docs directory contains the documentation files and the documentation websit
 
 Things that should be worked on:
 
-- create a way to choose between multiple different templates (webpack instead of rollup, typescript, etc...)
-- significantly rewrite the create-scriptable-widget package to increase robustness
+-   create a way to choose between multiple different templates (webpack instead of rollup, typescript, etc...)
+-   significantly rewrite the create-scriptable-widget package to increase robustness
 
 # 📋 License
 
