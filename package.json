@@ -12,5 +12,8 @@
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/iamsebastiandev/create-scriptable-widget.git"
+	},
+	"devDependencies": {
+		"@types/scriptable-ios": "^1.6.4"
 	}
 }
